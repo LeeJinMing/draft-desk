@@ -12,6 +12,8 @@ const exportFile = field("export");
 const limit = { blue: 5, red: 5, bans: 10 };
 const stateLabels = { fearless_locked: "Locked", picked: "Picked", banned: "Banned", available: "Available", unavailable: "Unavailable" };
 const boardStates = ["fearless_locked", "picked", "banned", "available"];
+const maxSeriesBytes = 64_000;
+const sizeError = "Choose a series JSON file under 64 KB.";
 let current;
 let busy = false;
 
@@ -78,10 +80,12 @@ async function acceptDraft(load, message = "") {
   try {
     const next = await load();
     const board = await validateDraft(next);
-    current = { draft: {
+    const draft = {
       mode: board.mode, pool: next.pool, history: next.history ?? [],
       blue: board.blue, red: board.red, bans: board.banned,
-    }, board };
+    };
+    if (new Blob([JSON.stringify(draft)]).size > maxSeriesBytes) throw new Error(sizeError);
+    current = { draft, board };
     status.textContent = message;
   } catch (error) {
     status.textContent = error.message;
@@ -113,12 +117,16 @@ importFile.addEventListener("change", () => {
   if (!file) return;
   importFile.value = "";
   void acceptDraft(async () => {
-    if (file.size > 64_000) throw new Error("Choose a series JSON file under 64 KB.");
+    if (file.size > maxSeriesBytes) throw new Error(sizeError);
     return JSON.parse(await file.text());
   }, "Series imported.");
 });
 exportFile.addEventListener("click", () => {
-  const blob = new Blob([JSON.stringify(current.draft, null, 2)], { type: "application/json" });
+  const options = { type: "application/json" };
+  let blob = new Blob([JSON.stringify(current.draft, null, 2)], options);
+  if (blob.size > maxSeriesBytes) {
+    blob = new Blob([JSON.stringify(current.draft)], options);
+  }
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
   link.href = url;
