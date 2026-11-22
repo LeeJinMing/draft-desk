@@ -1,0 +1,21 @@
+:root { font-family: system-ui, sans-serif; color: #f2f5fc; background: #0c1322; color-scheme: dark; }
+body { margin: 0; }
+main { width: min(64rem, calc(100% - 2rem)); margin: 2rem auto; }
+header, .controls { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; align-items: center; }
+h1 { font-size: clamp(2.5rem, 7vw, 4.5rem); letter-spacing: -.06em; margin: 0; }
+h2, h3 { margin: 0; }
+p { color: #bfcce4; }
+section { background: #17243b; border: 1px solid #354967; border-radius: .8rem; margin-block: 1rem; padding: 1rem; }
+select, button { font: inherit; padding: .5rem .65rem; border: 1px solid #57709a; border-radius: .35rem; background: #233654; color: inherit; }
+button:enabled { cursor: pointer; }
+button:disabled { opacity: .67; }
+button[data-state="fearless_locked"] { background: #573452; }
+button[data-state="picked"] { background: #19475a; }
+button[data-state="banned"] { background: #723c39; }
+button[data-state="available"]:hover, button:focus-visible, select:focus-visible { outline: 2px solid #a9c8fc; }
+.slots { display: grid; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); gap: .75rem; margin-block: 1rem; }
+.slots > div { min-height: 5.5rem; background: #101c30; padding: .7rem; border-radius: .35rem; }
+.slots ol { padding-inline-start: 1.7rem; }
+.slots li { margin-block: .3rem; }
+.pool { display: grid; grid-template-columns: repeat(auto-fill, minmax(7.8rem, 1fr)); gap: .4rem; }
+#status { min-height: 1.3em; margin-bottom: 0; }
