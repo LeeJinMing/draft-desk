@@ -12,6 +12,7 @@ ROOT = Path(__file__).resolve().parent
 PAGES = {
     "/": ("web/index.html", "text/html; charset=utf-8"),
     "/draft.js": ("web/draft.js", "text/javascript; charset=utf-8"),
+    "/validator.js": ("web/validator.js", "text/javascript; charset=utf-8"),
     "/site.css": ("web/site.css", "text/css; charset=utf-8"),
     "/demo.json": ("synthetic-series.json", "application/json; charset=utf-8"),
 }

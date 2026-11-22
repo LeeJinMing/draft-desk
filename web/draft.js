@@ -1,3 +1,5 @@
+import { validateDraft } from "./validator.js";
+
 const field = id => document.getElementById(id);
 const pool = field("pool");
 const status = field("status");
@@ -65,17 +67,6 @@ function render() {
   }));
 }
 
-async function validate(draft) {
-  const response = await fetch("/draft", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(draft),
-  });
-  const result = await response.json();
-  if (!response.ok) throw new Error(result.error ?? "Cannot validate the draft.");
-  return result;
-}
-
 async function acceptDraft(load, message = "") {
   if (busy) return;
   busy = true;
@@ -84,7 +75,7 @@ async function acceptDraft(load, message = "") {
   for (const button of document.querySelectorAll(".slots button, #pool button")) button.disabled = true;
   try {
     const next = await load();
-    const board = await validate(next);
+    const board = await validateDraft(next);
     current = { draft: {
       mode: board.mode, pool: next.pool, history: next.history ?? [],
       blue: board.blue, red: board.red, bans: board.banned,
@@ -135,7 +126,7 @@ exportFile.addEventListener("click", () => {
 });
 
 async function loadSeries() {
-  const fixture = await fetch("/demo.json");
+  const fixture = await fetch("./demo.json");
   if (!fixture.ok) throw new Error("Unable to load the synthetic series.");
   return fixture.json();
 }

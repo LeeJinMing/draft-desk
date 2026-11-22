@@ -8,7 +8,9 @@ Run `python -m unittest -v` to verify both draft modes and rejection of impossib
 
 ## Interactive draft board
 
-Run `python serve.py` and open `http://127.0.0.1:5185/`. A synthetic 70-champion series starts on game two with ten champions locked by game one. Choose a destination for the next champion, add or remove picks and bans, and record the game once both sides have five picks. Recording a game carries its picks into Hard Fearless and clears its bans. The board closes after five games. Export the series before reloading to keep the in-progress draft, and import the JSON to resume it. To start an empty series, import a document with a `pool` array and a `mode` of `fearless` or `standard`.
+Open the [browser demo](https://leejinming.github.io/draft-desk/), or run `python serve.py` and open `http://127.0.0.1:5185/`. A synthetic 70-champion series starts on game two with ten champions locked by game one. Choose a destination for the next champion, add or remove picks and bans, and record the game once both sides have five picks. Recording a game carries its picks into Hard Fearless and clears its bans. The board closes after five games. Export the series before reloading to keep the in-progress draft, and import the JSON to resume it. To start an empty series, import a document with a `pool` array and a `mode` of `fearless` or `standard`.
+
+The hosted demo runs the same Python rules in the browser using [Pyodide](https://pyodide.org/), loaded from its documented CDN. Series imports are validated in the browser. The downloadable Python version can run without any CDN access.
 
 ## JetBrains workflow
 
