@@ -3,6 +3,7 @@ import { validateDraft } from "./validator.js";
 const field = id => document.getElementById(id);
 const pool = field("pool");
 const status = field("status");
+const offlineBuild = field("offline-build");
 const mode = field("mode");
 const action = field("action");
 const advance = field("advance");
@@ -24,6 +25,7 @@ function makeButton(text, handler) {
 
 function render() {
   const { board, draft } = current;
+  offlineBuild.hidden = true;
   field("series").textContent = board.complete ? "Five games recorded" : `Game ${board.game} · ${draft.history.length} recorded`;
   mode.value = board.mode;
   mode.disabled = busy;
@@ -132,3 +134,8 @@ async function loadSeries() {
 }
 
 await acceptDraft(loadSeries, "Synthetic series loaded.");
+if (!current && document.querySelector('meta[name="draft-validator"]').content === "browser") {
+  field("series").textContent = "Browser demo unavailable";
+  status.textContent = "The browser demo could not start. Reload the page or use the offline build.";
+  offlineBuild.hidden = false;
+}
