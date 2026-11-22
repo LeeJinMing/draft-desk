@@ -1,0 +1,6 @@
+<profile version="1.0">
+  <option name="myName" value="Draft Desk checks" />
+  <inspection_tool class="PyUnusedLocal" enabled="true" level="WARNING" enabled_by_default="true" />
+  <inspection_tool class="PyBroadException" enabled="true" level="WARNING" enabled_by_default="true" />
+  <inspection_tool class="PyRedeclaration" enabled="true" level="WARNING" enabled_by_default="true" />
+</profile>

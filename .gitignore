@@ -1,6 +1,9 @@
 __pycache__/
 .venv/
-.idea/
+/.idea/*
+!/.idea/inspectionProfiles/
+/.idea/inspectionProfiles/*
+!/.idea/inspectionProfiles/Draft_Desk.xml
 /local-data/
 /derived/
 *.jsonl
