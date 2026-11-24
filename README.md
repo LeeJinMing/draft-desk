@@ -14,6 +14,8 @@ The hosted demo runs the same Python rules in the browser using [Pyodide](https:
 
 ## JetBrains workflow
 
+The [workflow case study](AI_SHOWCASE.md) traces specific inspection findings to the CLI and browser behavior and gives a short coaching walkthrough.
+
 PyCharm 2026.3.0.1 opened the project and ran its code inspector. The first report identified a CLI error branch and unresolved frontend assets. The CLI now returns explicitly on invalid input, the page uses relative asset URLs, and the browser's champion state mapping has explicit string types. The shared [Draft Desk inspection profile](.idea/inspectionProfiles/Draft_Desk.xml) can be used in **Code → Inspect Code** or via the [PyCharm inspection command](https://www.jetbrains.com/help/pycharm/command-line-code-inspector.html). For example, on Windows with `pycharm64.exe` on `PATH`:
 
 ```powershell
