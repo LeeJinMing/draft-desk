@@ -13,7 +13,7 @@ def build(destination: Path) -> None:
         html.replace('name="draft-validator" content="server"', 'name="draft-validator" content="browser"'),
         encoding="utf-8",
     )
-    for file in ("draft.js", "validator.js", "site.css"):
+    for file in ("draft.js", "validator.js", "site.css", "walkthrough.mp4"):
         copyfile(root / "web" / file, destination / file)
     for file in ("draft.py", "run.py", "LICENSE"):
         copyfile(root / file, destination / file)

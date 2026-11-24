@@ -13,6 +13,7 @@ PAGES = {
     "/": ("web/index.html", "text/html; charset=utf-8"),
     "/draft.js": ("web/draft.js", "text/javascript; charset=utf-8"),
     "/validator.js": ("web/validator.js", "text/javascript; charset=utf-8"),
+    "/walkthrough.mp4": ("web/walkthrough.mp4", "video/mp4"),
     "/site.css": ("web/site.css", "text/css; charset=utf-8"),
     "/demo.json": ("synthetic-series.json", "application/json; charset=utf-8"),
 }
